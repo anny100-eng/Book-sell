@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Book Vibe</title>
+</head>
+
+<body class="bg-white text-[#131313]">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <!-- Navbar -->
+    <header>
+      <nav class="flex justify-between items-center py-6 gap-4">
+        <h3 class="font-bold text-2xl md:text-[28px] text-nowrap">
+          Book Vibe
+        </h3>
+
+        <ul class="hidden lg:flex items-center gap-6">
+          <li>
+            <a href="#home"
+              class="font-semibold text-[#23BE0A] border border-[#23BE0A] px-4 py-3 rounded-lg">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#books" class="hover:text-[#23BE0A]">Listed Books</a>
+          </li>
+          <li>
+            <a href="#pages" class="hover:text-[#23BE0A]">Pages to read</a>
+          </li>
+        </ul>
+
+        <div class="flex gap-2">
+          <button onclick="alert('Sign In feature coming soon!')"
+            class="font-semibold text-white bg-[#23BE0A] px-3 md:px-4 py-3 rounded-xl text-sm md:text-base">
+            Sign In
+          </button>
+          <button onclick="alert('Sign Up feature coming soon!')"
+            class="font-semibold text-white bg-[#59C6D2] px-3 md:px-4 py-3 rounded-xl text-sm md:text-base">
+            Sign Up
+          </button>
+        </div>
+      </nav>
+
+      <hr class="border-t border-dotted border-gray-300" />
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home"
+        class="bg-[#F3F3F3] rounded-2xl mt-8 p-6 md:p-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+            Books to freshen up your bookshelf
+          </h1>
+
+          <p class="text-gray-600 mt-5 leading-7">
+            Discover amazing stories, explore new worlds, and find your
+            next favourite book with Book Vibe.
+          </p>
+
+          <a href="#books"
+            class="inline-block bg-[#23BE0A] text-white font-semibold px-6 py-3 rounded-lg mt-6 hover:bg-green-700">
+            View The List
+          </a>
+        </div>
+
+        <div class="flex justify-center">
+          <!-- Replace this path with your actual banner image -->
+          <img src="./assets/banner.png"
+            alt="Books banner"
+            class="w-full max-w-sm object-contain"
+            onerror="this.style.display='none'; document.getElementById('bannerFallback').style.display='flex';" />
+
+          <div id="bannerFallback"
+            class="hidden w-64 h-64 rounded-2xl bg-[#DDEBDD] items-center justify-center text-7xl">
+            📚
+          </div>
+        </div>
+      </section>
+
+      <!-- Books Section -->
+      <section id="books" class="mt-12">
+        <h2 class="text-3xl font-bold text-center mb-8">
+          Books
+        </h2>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <button onclick="filterBooks('All', this)"
+            class="filter-btn bg-[#23BE0A] text-white px-5 py-2 rounded-lg">
+            All
+          </button>
+          <button onclick="filterBooks('Fiction', this)"
+            class="filter-btn border px-5 py-2 rounded-lg hover:bg-green-50">
+            Fiction
+          </button>
+          <button onclick="filterBooks('Fantasy', this)"
+            class="filter-btn border px-5 py-2 rounded-lg hover:bg-green-50">
+            Fantasy
+          </button>
+          <button onclick="filterBooks('Classic', this)"
+            class="filter-btn border px-5 py-2 rounded-lg hover:bg-green-50">
+            Classic
+          </button>
+        </div>
+
+        <!-- Book Grid -->
+        <div id="bookGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Book 1 -->
+          <article data-category="Fiction"
+            class="book-card border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-lg transition">
+            <img src="./assets/book-1.png"
+              alt="The Great Gatsby cover"
+              class="w-full h-64 object-contain rounded-lg bg-gray-50"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="hidden h-64 bg-[#315C45] text-white rounded-lg items-center justify-center text-center p-6">
+              <span class="text-2xl font-bold">The Great Gatsby</span>
+            </div>
+            <div class="flex gap-2 mt-4 flex-wrap">
+              <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">Fiction</span>
+              <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Classic</span>
+            </div>
+            <h3 class="font-bold text-xl mt-3">The Great Gatsby</h3>
+            <p class="text-gray-500 mt-1">By F. Scott Fitzgerald</p>
+            <hr class="my-4" />
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 text-sm">Classic fiction</span>
+              <button onclick="saveBook(this)"
+                class="bg-yellow-50 px-3 py-2 rounded-lg text-sm font-semibold">☆ 4.5</button>
+            </div>
+          </article>
+
+          <!-- Book 2 -->
+          <article data-category="Fantasy"
+            class="book-card border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-lg transition">
+            <img src="./assets/book-2.png"
+              alt="The Hobbit cover"
+              class="w-full h-64 object-contain rounded-lg bg-gray-50"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="hidden h-64 bg-[#7B6548] text-white rounded-lg items-center justify-center text-center p-6">
+              <span class="text-2xl font-bold">The Hobbit</span>
+            </div>
+            <div class="flex gap-2 mt-4 flex-wrap">
+              <span class="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-sm">Fantasy</span>
+            </div>
+            <h3 class="font-bold text-xl mt-3">The Hobbit</h3>
+            <p class="text-gray-500 mt-1">By J. R. R. Tolkien</p>
+            <hr class="my-4" />
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 text-sm">Adventure</span>
+              <button onclick="saveBook(this)"
+                class="bg-yellow-50 px-3 py-2 rounded-lg text-sm font-semibold">☆ 4.8</button>
+            </div>
+          </article>
+
+          <!-- Book 3 -->
+          <article data-category="Classic"
+            class="book-card border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-lg transition">
+            <img src="./assets/book-3.png"
+              alt="Pride and Prejudice cover"
+              class="w-full h-64 object-contain rounded-lg bg-gray-50"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="hidden h-64 bg-[#9C6878] text-white rounded-lg items-center justify-center text-center p-6">
+              <span class="text-2xl font-bold">Pride and Prejudice</span>
+            </div>
+            <div class="flex gap-2 mt-4 flex-wrap">
+              <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Classic</span>
+            </div>
+            <h3 class="font-bold text-xl mt-3">Pride and Prejudice</h3>
+            <p class="text-gray-500 mt-1">By Jane Austen</p>
+            <hr class="my-4" />
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 text-sm">Romance</span>
+              <button onclick="saveBook(this)"
+                class="bg-yellow-50 px-3 py-2 rounded-lg text-sm font-semibold">☆ 4.7</button>
+            </div>
+          </article>
+
+          <!-- Book 4 -->
+          <article data-category="Fiction"
+            class="book-card border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-lg transition">
+            <img src="./assets/book-4.png"
+              alt="Little Women cover"
+              class="w-full h-64 object-contain rounded-lg bg-gray-50"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="hidden h-64 bg-[#B56C48] text-white rounded-lg items-center justify-center text-center p-6">
+              <span class="text-2xl font-bold">Little Women</span>
+            </div>
+            <div class="flex gap-2 mt-4 flex-wrap">
+              <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm">Fiction</span>
+              <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">Classic</span>
+            </div>
+            <h3 class="font-bold text-xl mt-3">Little Women</h3>
+            <p class="text-gray-500 mt-1">By Louisa May Alcott</p>
+            <hr class="my-4" />
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600 text-sm">Family</span>
+              <button onclick="saveBook(this)"
+                class="bg-yellow-50 px-3 py-2 rounded-lg text-sm font-semibold">☆ 4.9</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Pages to Read -->
+      <section id="pages"
+        class="mt-14 mb-12 bg-[#F3F3F3] rounded-2xl p-8 text-center">
+        <h2 class="text-3xl font-bold">Your Reading List</h2>
+        <p class="text-gray-600 mt-3">
+          Save books by clicking their rating buttons.
+        </p>
+        <p id="savedCount" class="text-[#23BE0A] font-bold mt-4">
+          0 books saved
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t py-6 flex flex-col md:flex-row justify-between gap-3 text-gray-500 text-sm">
+      <p class="font-bold text-[#131313]">Book Vibe</p>
+      <p>Discover your next favourite book.</p>
+      <p>© 2026 Book Vibe</p>
+    </footer>
+
+  </div>
+
+  <script>
+    function filterBooks(category, button) {
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.remove("bg-[#23BE0A]", "text-white");
+        btn.classList.add("border");
+      });
+
+      button.classList.remove("border");
+      button.classList.add("bg-[#23BE0A]", "text-white");
+
+      document.querySelectorAll(".book-card").forEach(book => {
+        book.style.display =
+          category === "All" || book.dataset.category === category
+            ? ""
+            : "none";
+      });
+    }
+
+    const savedBooks = new Set();
+
+    function saveBook(button) {
+      const card = button.closest(".book-card");
+      const title = card.querySelector("h3").textContent;
+
+      if (savedBooks.has(title)) {
+        savedBooks.delete(title);
+        button.textContent = button.dataset.rating;
+        button.classList.remove("bg-green-100");
+        button.classList.add("bg-yellow-50");
+      } else {
+        savedBooks.add(title);
+        button.dataset.rating = button.textContent;
+        button.textContent = "✓ Saved";
+        button.classList.remove("bg-yellow-50");
+        button.classList.add("bg-green-100");
+      }
+
+      document.getElementById("savedCount").textContent =
+        savedBooks.size + (savedBooks.size === 1 ? " book saved" : " books saved");
+    }
+  </script>
+</body>
+</html>
